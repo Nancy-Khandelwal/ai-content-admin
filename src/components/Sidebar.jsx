@@ -24,16 +24,11 @@ export default function Sidebar() {
   const items = itemsByRole[user?.role || 'EDITOR']
   return (
     <aside className="sidebar">
-      <div className="text-2xl font-bold mb-6">Admin Panel</div>
+      <div className="text-2xl font-bold mb-4">Admin Panel</div>
+      <div className="uppercase text-xs font-semibold text-slate-400 tracking-wider mb-3">Menu</div>
       <nav className="space-y-1">
         {items.map((it) => (
-          <NavLink
-            key={it.to}
-            to={it.to}
-            className={({ isActive }) =>
-              `nav-link ${isActive ? 'bg-slate-800' : ''}`
-            }
-          >
+          <NavLink key={it.to} to={it.to} className={({ isActive }) => `nav-link ${isActive ? 'bg-slate-800' : ''}`}>
             {it.label}
           </NavLink>
         ))}

@@ -1,24 +1,23 @@
-const stats = [
-  { date: '2025-09-01', published: 15, veryImportant: 5, semiImportant: 7, social: 3 },
-  { date: '2025-09-02', published: 12, veryImportant: 3, semiImportant: 6, social: 3 },
-]
-export default function Reports() {
+import { useState } from 'react'
+import Pagination from '../components/Pagination.jsx'
+import { useGlobal } from '../context/GlobalContext.jsx'
+
+const stats = Array.from({length: 18}).map((_,i)=>({ date: `2025-09-${String(i+1).padStart(2,'0')}`, published: 10+i, veryImportant: i%3, semiImportant: i%4, social: i%2 }))
+
+export default function Reports(){
+  const [page, setPage] = useState(1)
+  const { pageSize } = useGlobal()
+  const total = stats.length
+  const paged = stats.slice((page-1)*pageSize, page*pageSize)
+
   return (
     <div className="space-y-4">
       <h2 className="text-2xl font-bold">Reports</h2>
       <div className="overflow-x-auto card">
         <table className="table min-w-[500px]">
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Published</th>
-              <th>Very Important</th>
-              <th>Semi Important</th>
-              <th>Social</th>
-            </tr>
-          </thead>
+          <thead><tr><th>Date</th><th>Published</th><th>Very Important</th><th>Semi Important</th><th>Social</th></tr></thead>
           <tbody>
-            {stats.map(s => (
+            {paged.map(s=> (
               <tr key={s.date}>
                 <td>{s.date}</td>
                 <td>{s.published}</td>
@@ -30,6 +29,7 @@ export default function Reports() {
           </tbody>
         </table>
       </div>
+      <Pagination total={total} page={page} setPage={setPage} pageSize={pageSize} />
     </div>
   )
 }

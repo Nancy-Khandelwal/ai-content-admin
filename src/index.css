@@ -16,21 +16,24 @@ body { @apply bg-gray-100 text-slate-900; }
 .nav-link { @apply block rounded-lg px-3 py-2 hover:bg-slate-700/60; }
 .sidebar { @apply w-64 bg-slate-900 text-slate-100 p-5 space-y-4 h-full; }
 .header { @apply bg-white shadow px-4 md:px-6 py-3 flex items-center justify-between; }
+
+/* scrollbar styling for horizontal scroll */
 ::-webkit-scrollbar {
-  height: 8px;   /* Horizontal scroll bar ki height */
+  height: 10px;
+  width: 8px;
 }
+::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 10px; }
+::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #64748b; }
 
-::-webkit-scrollbar-track {
-  background: #f1f5f9; /* light gray track */
-  border-radius: 10px;
+/* custom select arrow and padding */
+.select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%23343A40' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1rem;
+  padding-right: 2.5rem;
 }
-
-::-webkit-scrollbar-thumb {
-  background: #94a3b8; /* slate gray thumb */
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #64748b; /* darker on hover */
-}
-
